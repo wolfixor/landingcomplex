@@ -404,7 +404,7 @@ const Navbar = () => {
                 {mounted && (
                   <div className="hidden md:block">
                     <Link
-                      href={"https://dashboard.tomakdigitalagency.ir/"}
+                      href={"https://dashboard.musictomak.shop/"}
                       target="_blank"
                     >
                       <button
@@ -543,7 +543,7 @@ const Navbar = () => {
 
               <div className="mt-4 pt-4 border-t border-white/10">
                 <Link
-                  href={"https://dashboard.tomakdigitalagency.ir/"}
+                  href={"https://dashboard.musictomak.shop/"}
                   target="_blank"
                 >
                   {" "}

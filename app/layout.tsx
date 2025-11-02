@@ -36,13 +36,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fa_IR",
     alternateLocale: ["en_US", "ar_SA"],
-    url: "https://psycho.tomakdigitalagency.ir/",
+    url: "https://dashboard.musictomak.shop/",
     title: seoConfig.fa.ogTitle,
     description: seoConfig.fa.ogDescription,
     siteName: seoConfig.fa.siteName,
     images: [
       {
-        url: "https://psycho.tomakdigitalagency.ir//og-image.jpg",
+        url: "https://dashboard.musictomak.shop//og-image.jpg",
         width: 1200,
         height: 630,
         alt: seoConfig.fa.ogTitle,
@@ -53,15 +53,15 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: seoConfig.fa.ogTitle,
     description: seoConfig.fa.ogDescription,
-    images: ["https://psycho.tomakdigitalagency.ir//og-image.jpg"],
+    images: ["https://dashboard.musictomak.shop//og-image.jpg"],
     creator: "@psycho",
   },
   alternates: {
-    canonical: "https://psycho.tomakdigitalagency.ir/",
+    canonical: "https://dashboard.musictomak.shop/",
     languages: {
-      "fa-IR": "https://psycho.tomakdigitalagency.ir/",
-      "en-US": "https://psycho.tomakdigitalagency.ir//en",
-      "ar-SA": "https://psycho.tomakdigitalagency.ir//ar",
+      "fa-IR": "https://dashboard.musictomak.shop/",
+      "en-US": "https://dashboard.musictomak.shop//en",
+      "ar-SA": "https://dashboard.musictomak.shop//ar",
     },
   },
   verification: {
@@ -81,11 +81,11 @@ export default function RootLayout({
       <head>
         <meta name="theme-color" content="#6366f1" />
         <meta name="format-detection" content="telephone=no" />
-        <link rel="canonical" href="https://psycho.tomakdigitalagency.ir/" />
-        <link rel="alternate" hrefLang="fa" href="https://psycho.tomakdigitalagency.ir/" />
-        <link rel="alternate" hrefLang="en" href="https://psycho.tomakdigitalagency.ir//en" />
-        <link rel="alternate" hrefLang="ar" href="https://psycho.tomakdigitalagency.ir//ar" />
-        <link rel="alternate" hrefLang="x-default" href="https://psycho.tomakdigitalagency.ir/" />
+        <link rel="canonical" href="https://dashboard.musictomak.shop/" />
+        <link rel="alternate" hrefLang="fa" href="https://dashboard.musictomak.shop/" />
+        <link rel="alternate" hrefLang="en" href="https://dashboard.musictomak.shop//en" />
+        <link rel="alternate" hrefLang="ar" href="https://dashboard.musictomak.shop//ar" />
+        <link rel="alternate" hrefLang="x-default" href="https://dashboard.musictomak.shop/" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
       </head>

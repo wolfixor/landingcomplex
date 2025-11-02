@@ -205,7 +205,7 @@ const CTA = () => {
             className="flex flex-col sm:flex-row justify-center items-center gap-5"
           >
             <Link
-              href={"https://dashboard.tomakdigitalagency.ir/"}
+              href={"https://dashboard.wolfixsite.shop/"}
               target="_blank"
             >
               {" "}

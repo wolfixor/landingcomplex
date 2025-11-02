@@ -284,7 +284,7 @@ const HowItWorks = () => {
             <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-300" />
 
             <Link
-              href={"https://dashboard.tomakdigitalagency.ir/"}
+              href={"https://dashboard.wolfixsite.shop/"}
               target="_blank"
             >
               {" "}

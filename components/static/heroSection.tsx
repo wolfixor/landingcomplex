@@ -677,7 +677,7 @@ const Hero = () => {
           ref={ctaRef}
           className="flex flex-col sm:flex-row justify-center gap-4 mb-20"
         >
-          <Link href={"https://dashboard.tomakdigitalagency.ir/"} target="_blank">
+          <Link href={"https://dashboard.wolfixsite.shop/"} target="_blank">
             <button
               onMouseEnter={(e) => handleButtonHover(e, true)}
               className="group px-10 py-5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold rounded-full shadow-2xl transition-all duration-300 relative overflow-hidden"

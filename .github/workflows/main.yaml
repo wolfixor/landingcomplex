@@ -41,4 +41,4 @@ jobs:
         context: .
         push: true
         tags: |
-          wolfix1245/landig:1.0
+          wolfix1245/landing:1.0

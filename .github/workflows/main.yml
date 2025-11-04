@@ -58,7 +58,8 @@ jobs:
      with:
        dockerhub-user: ${{ secrets.DOCKER_USERNAME }}
        dockerhub-password: ${{ secrets.DOCKER_PASSWORD }}
-       command: quickview,cves
+       command: cves
+       image: wolfix1245/landing:latest
        only-severities: critical,high
        sarif-file: scout-report.sarif
 

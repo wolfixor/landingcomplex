@@ -8,7 +8,7 @@ on:
 
 env:
   DOCKER_REGISTRY: docker.io
-  IMAGE_NAME: wolfix1245/dashboard
+  IMAGE_NAME: wolfix1245/landing
 
 jobs:
   build-and-deploy:

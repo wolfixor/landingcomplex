@@ -1,0 +1,77 @@
+##############################################
+# LANDING COMPLEX - Production Deployment
+##############################################
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: landingcomplex-app
+  labels:
+    app: landingcomplex-app
+spec:
+  replicas: 1  # ✅ Run at least 2 replicas for HA (production)
+  selector:
+    matchLabels:
+      app: landingcomplex-app
+  template:
+    metadata:
+      labels:
+        app: landingcomplex-app
+    spec:
+      containers:
+        - name: landingcomplex-app
+          image: wolfix1245/landing:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          # ✅ Resource requests/limits with valid ephemeral-storage
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1000Mi"
+              ephemeral-storage: "1000Mi"
+            limits:
+              cpu: "1000m"
+              memory: "1000Mi"
+              ephemeral-storage: "2000Mi"
+
+---
+##############################################
+# SERVICE
+##############################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: landingcomplex-app
+  labels:
+    app: landingcomplex-app
+spec:
+  type: ClusterIP
+  selector:
+    app: landingcomplex-app
+  ports:
+    - port: 80
+      targetPort: 3000
+
+---
+##############################################
+# INGRESS
+##############################################
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: landingcomplex-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: www.tomakdigitalagency.ir
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: landingcomplex-app
+                port:
+                  number: 80

@@ -62,6 +62,7 @@ jobs:
   #     with:
   #       sarif_file: 'trivy-results.sarif'
 
+
 docker:
     name: Docker Build & Scan
     runs-on: ubuntu-latest

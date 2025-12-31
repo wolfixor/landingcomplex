@@ -85,31 +85,18 @@ jobs:
           ${{ env.IMAGE_NAME }}:${{ github.sha }}
           ${{ env.IMAGE_NAME }}:${{ env.ENV }}-latest
 
-    - name: Update GitOps Repository
+    - name: Trigger GitOps Repository Update
       if: github.event_name == 'push' && success()
       run: |
-        git clone https://${{ secrets.GITOPS_TOKEN }}@github.com/wolfixor/gitops-repo.git
-        cd gitops-repo
-        
-        # Update image tag based on environment
-        case "${{ env.ENV }}" in
-          prod)
-            sed -i "s|newTag: \".*\"|newTag: \"${{ github.sha }}\"|g" \
-              apps/landing/overlays/prod/kustomization.yaml
-            ;;
-          staging)
-            sed -i "s|newTag: \".*\"|newTag: \"${{ github.sha }}\"|g" \
-              apps/landing/overlays/staging/kustomization.yaml
-            ;;
-          dev)
-            sed -i "s|newTag: \".*\"|newTag: \"${{ github.sha }}\"|g" \
-              apps/landing/overlays/dev/kustomization.yaml
-            ;;
-        esac
-        
-        # Commit and push changes
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-        git add .
-        git commit -m "🚀 Update landing image to ${{ github.sha }} for ${{ env.ENV }}"
-        git push origin main
+        curl -X POST \
+          -H "Accept: application/vnd.github.v3+json" \
+          -H "Authorization: token ${{ secrets.GITOPS_TOKEN }}" \
+          https://api.github.com/repos/wolfixor/gitops-repo/dispatches \
+          -d "{
+            \"event_type\": \"update-manifest\",
+            \"client_payload\": {
+              \"app_name\": \"landing\",
+              \"image_tag\": \"${{ github.sha }}\",
+              \"environment\": \"${{ env.ENV }}\"
+            }
+          }"

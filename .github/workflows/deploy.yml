@@ -1,4 +1,4 @@
-name: Build and Deploy Complex
+name: Build and Deploy landing
 
 on:
   push:

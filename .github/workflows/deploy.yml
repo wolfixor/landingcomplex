@@ -15,8 +15,22 @@ env:
   DOCKER_REGISTRY: docker.io
   IMAGE_NAME: wolfix1245/landing
 
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
 
   test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: [validate]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
@@ -34,17 +48,17 @@ env:
         npm test
         npm run lint
 
-
   build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
     needs: [validate, test]
     environment: 
       name: ${{ github.ref_name == 'main' && 'production' || (github.ref_name == 'staging' && 'staging' || 'development') }}
+    env:
+      ENV: ${{ github.ref_name == 'main' && 'prod' || (github.ref_name == 'staging' && 'staging' || 'dev') }}
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-
 
     - name: Login to Docker Hub
       uses: docker/login-action@v3
@@ -61,7 +75,6 @@ env:
           ${{ env.IMAGE_NAME }}:${{ github.sha }}
           ${{ env.IMAGE_NAME }}:${{ env.ENV }}-latest
 
-
     - name: Push Docker image
       if: success()
       uses: docker/build-push-action@v5
@@ -71,7 +84,6 @@ env:
         tags: |
           ${{ env.IMAGE_NAME }}:${{ github.sha }}
           ${{ env.IMAGE_NAME }}:${{ env.ENV }}-latest
-
 
     - name: Update GitOps Repository
       if: github.event_name == 'push' && success()
@@ -101,5 +113,3 @@ env:
         git add .
         git commit -m "🚀 Update landing image to ${{ github.sha }} for ${{ env.ENV }}"
         git push origin main
-    
-
